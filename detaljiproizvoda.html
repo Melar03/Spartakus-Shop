@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalji Proizvoda | SpartakusShop.rs</title>
+     <link rel="icon" href="logo (1).png" type="png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color: white;
+            text-shadow: 1px 1px black;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-container img {
+            max-width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            position: relative;
+            color: #fff;
+            text-decoration: none;
+            padding: 6px 10px;
+            transition: .3s;
+        }
+
+        nav ul li a:hover {
+            color: red;
+        }
+
+        nav ul li a span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-bottom: 2px solid red;
+            border-radius: 10px;
+            transform: scale(0) translateY(50px);
+            opacity: 0;
+            transition: .3s;
+        }
+
+        nav ul li a:hover span {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 2px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .product-details {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #444;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-details img {
+    max-width: 400px; /* Maksimalna širina slike */
+    max-height: 400px; /* Maksimalna visina slike */
+    width: auto; /* Održava proporcije slike */
+    height: auto; /* Održava proporcije slike */
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+        .product-details h1 {
+            margin-bottom: 10px;
+        }
+
+        .product-details p {
+            margin-bottom: 20px;
+        }
+
+        .product-details button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .product-details button:hover {
+            background-color: #C70039;
+        }
+
+        ::-webkit-scrollbar {
+    width: 5px; /* Širina klizača */
+}
+
+/* Prilagođavanje izgleda klizača u webkit pregledačima */
+::-webkit-scrollbar-thumb {
+    background-color:#333; /* Boja klizača */
+    
+}
+    </style>
+</head>
+<body background="poz1.jpg">
+    <header>
+        <div class="logo-container">
+            <img src="logo.jpg" alt="Spartakus Shop Logo">
+            <h1>Spartakus Shop</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="pocetna.html">Početna<span></span></a></li>
+                <li><a href="proizvodi.html">Proizvodi<span></span></a></li>
+                <li><a href="Korpa.html">Korpa<span></span></a></li>
+                <li><a href="kontakt.html">Kontakt<span></span></a></li>
+                <li><a href="onama.html">O nama<span></span></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="product-details" id="product-details">
+            <!-- Detalji proizvoda će biti učitani ovde -->
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Spartakus Shop. Sva prava zadržana.</p>
+    </footer>
+    <script>
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        function showProductDetails(productKey) {
+            const products = {
+                'tegovi': { name: 'Set tegova', price: '4599 Rsd', imgSrc: 'tegovi.jpg', description: 'Predstavljamo vam UltimateFit tegove za kućnu teretanu – sve što vam je potrebno za efikasan i raznovrstan trening u udobnosti vašeg doma.Karakteristike seta tegova:Višenamenski dizajn: Set sadrži različite težine tegova, omogućavajući vam da prilagodite opterećenje svakom mišićnom grupom i nivou treninga.Visokokvalitetni materijali: Izrađeni od čvrstog čelika sa glatkim premazom, tegovi su izuzetno izdržljivi i otporni na habanje.Ergonomska ručka: Udubljena ručka sa neklizajućim premazom omogućava udobno i sigurno držanje, čak i tokom intenzivnih treninga.Lako skladištenje: Zahvaljujući kompaktnom dizajnu, tegovi se lako skladište i ne zauzimaju puno prostora u vašem domu.Prilagodljivost: Set se može koristiti za širok spektar vežbi, uključujući tegove za ruke, noge, leđa i trbušne mišiće.' },
+                'sipke': { name: 'Šipke za bučice', price: '3499 Rsd', imgSrc: 'sipke.jpg', description: 'Predstavljamo vam UltraFlex bučice sa šipkom – savršen izbor za intenzivan i efikasan trening kod kuće ili u teretani.Karakteristike:Višenamenski dizajn: Ove bučice sa šipkom omogućavaju vam da izvodite različite vežbe za gornji i donji deo tela, uključujući bench press, biceps curls, shoulder press i mnoge druge.Robustna konstrukcija: Izrađene od čvrstog čelika, ove bučice su izuzetno izdržljive i mogu izdržati teška opterećenja tokom treninga.Ergonomska ručka: Šipka je opremljena udobnim neklizajućim rukohvatom koji omogućava čvrsto držanje i stabilnost tokom vežbi.Prilagodljivost: Set dolazi sa različitim težinama ploča koje se lako dodaju ili uklanjaju, omogućavajući vam da prilagodite opterećenje prema svojim fitness ciljevima i nivou snage.Skladištenje: Zahvaljujući kompaktnom dizajnu, ove bučice zauzimaju malo prostora i lako se skladište nakon upotrebe.' },
+                'protein1': { name: 'Whey protein 4.3kg', price: '9000 Rsd', imgSrc: 'protein1.png', description: 'Karakteristike proizvoda:Visok sadržaj proteina: UltraProtein+ sadrži 25 grama proteina po porciji, što je idealno za izgradnju i oporavak mišića nakon intenzivnih treninga.Izvrsna kombinacija izvora proteina: Naša jedinstvena formula kombinuje whey protein izolat i kazein, obezbeđujući brzu i dugotrajnu opskrbu aminokiselinama.Nizak sadržaj ugljenih hidrata i masti: Dizajniran za one koji prate stroge dijete, UltraProtein+ vam pomaže da ostanete u formi bez kompromisa u kvalitetu.Obogaćen vitaminima i mineralima: Pored proteina, naš proizvod sadrži esencijalne vitamine i minerale, kao što su vitamin B6, kalcijum i magnezijum, koji podržavaju metabolizam i zdravlje kostiju.Prirodni ukusi: Dostupan u nekoliko ukusnih varijanti kao što su čokolada, vanila i jagoda, UltraProtein+ će zadovoljiti vaše nepce bez dodanih veštačkih aroma i boja.' },
+                'rukavica': { name: 'Rukavice', price: '5500 Rsd', imgSrc: 'rukavica.jpg', description: 'Predstavljamo UFC borbene rukavice – vrhunski izbor za sve MMA entuzijaste i profesionalne borce. Dizajnirane su da pruže optimalnu zaštitu i udobnost tokom treninga i borbi.Karakteristike:Visokokvalitetna koža: Izrađene od premium kože koja osigurava dugotrajnost i izdržljivost.Optimalna zaštita: Slojevita pena visoke gustine pruža odličnu zaštitu za šake i zglobove.Ergonomski dizajn: Savršeno prijanjanje koje omogućava prirodnu pokretljivost prstiju za hvatanje i udaranje.Podesivo kopčanje: Čičak traka omogućava sigurnu i prilagodljivu podršku za zglobove.Ventilacija: Perforirani paneli pomažu u održavanju ruku suvim i udobnim tokom intenzivnog treninga.' },                'flasa': { name: 'Flašica', price: '400 Rsd', imgSrc: 'flasa.jpg', description: 'Karakteristike:Vitaminizovana hidratacija: HydroBoost voda kombinuje osvežavajući ukus vode sa dodatkom esencijalnih vitamina i minerala, pružajući vam sve što vam je potrebno za optimalno zdravlje i performanse.Prenosiva praktičnost: Ova voda dolazi u praktičnoj flašici koja se lako može nositi sa sobom bilo gde, omogućavajući vam da ostanete hidrirani i nahranjeni tokom celog dana.Niskokalorični izbor: Bez dodatog šećera i kalorija, HydroBoost voda je savršen izbor za one koji žele da održe zdravu ishranu i kontroliraju unos kalorija.Obogaćena formula: Svaka flašica sadrži optimalnu kombinaciju vitamina B kompleksa, vitamin C, elektrolita i antioksidanata, podržavajući vaš imuni sistem, energiju i oporavak.Sveukupna dobrobit: Redovno konzumiranje HydroBoost vode može doprineti poboljšanju hidratacije, mentalne budnosti i opšteg zdravlja.' },                'proteine': { name: 'Whey protein 2kg', price: '4500 Rsd', imgSrc: 'proteine.png', description: 'Karakteristike proizvoda:Visok sadržaj proteina: UltraProtein+ sadrži 25 grama proteina po porciji, što je idealno za izgradnju i oporavak mišića nakon intenzivnih treninga.Izvrsna kombinacija izvora proteina: Naša jedinstvena formula kombinuje whey protein izolat i kazein, obezbeđujući brzu i dugotrajnu opskrbu aminokiselinama.Nizak sadržaj ugljenih hidrata i masti: Dizajniran za one koji prate stroge dijete, UltraProtein+ vam pomaže da ostanete u formi bez kompromisa u kvalitetu.Obogaćen vitaminima i mineralima: Pored proteina, naš proizvod sadrži esencijalne vitamine i minerale, kao što su vitamin B6, kalcijum i magnezijum, koji podržavaju metabolizam i zdravlje kostiju.Prirodni ukusi: Dostupan u nekoliko ukusnih varijanti kao što su čokolada, vanila i jagoda, UltraProtein+ će zadovoljiti vaše nepce bez dodanih veštačkih aroma i boja.' },
+                'kreatin': { name: 'Kreatin', price: '3200 Rsd', imgSrc: 'kreatin.jpg', description: 'Povećava snagu i izdržljivost: Kreatin je jedan od najistraženijih i najefikasnijih dodataka za poboljšanje sportskih performansi. Povećava nivo kreatin-fosfata u mišićima, što rezultira povećanom snagom i izdržljivošću tokom treninga.Potpomaže mišićni rast: Kreatin pomaže u povećanju sinteze proteina i podstiče rast mišićne mase, čineći ga ključnim dodatkom za bodibildere i sve koji žele da izgrade mišiće.Brži oporavak: Kreatin može smanjiti oštećenja mišića i ubrzati proces oporavka nakon treninga, omogućavajući vam da se brže vratite u formu i nastavite sa intenzivnim treninzima.Lako se meša: Kreatin Boost dolazi u prahu koji se lako meša sa vodom, sokom ili proteinskim shake-om, pružajući vam praktičan način da ga konzumirate pre ili posle treninga.Bez dodatnih aditiva: Naša formula kreatina je čista i bezbedna, bez nepotrebnih aditiva, veštačkih boja ili aroma.' },
+            };
+
+            const product = products[productKey];
+
+            if (product) {
+                document.getElementById('product-details').innerHTML = `
+                    <h1>${product.name}</h1>
+                    <img src="${product.imgSrc}" alt="${product.name}">
+                    <p>Cena: ${product.price}</p>
+                    <p>${product.description}</p>
+                    <button onclick="addToCart('${product.name}', '${product.price}', '${product.imgSrc}')">Dodajte u korpu</button>
+                `;
+            } else {
+                document.getElementById('product-details').innerHTML = '<p>Proizvod nije pronađen.</p>';
+            }
+        }
+
+        const productKey = getUrlParameter('product');
+        showProductDetails(productKey);
+
+        function addToCart(name, price, imgSrc) {
+            let product = {
+                name: name,
+                price: price,
+                imgSrc: imgSrc,
+                quantity: 1
+            };
+
+            let cart = localStorage.getItem('cart');
+            cart = cart ? JSON.parse(cart) : [];
+            let found = false;
+            cart.forEach(item => {
+                if (item.name === product.name) {
+                    item.quantity++;
+                    found = true;
+                }
+            });
+
+            if (!found) {
+                cart.push(product);
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            showAddToCartMessage();
+        }
+
+        function showAddToCartMessage() {
+            let message = document.createElement('div');
+            message.textContent = 'Proizvod dodat u korpu';
+            message.style.backgroundColor = 'black';
+            message.style.color = 'white';
+            message.style.padding = '10px';
+            message.style.position = 'fixed';
+            message.style.top = '50px';
+            message.style.left = '50%';
+            message.style.transform = 'translateX(-50%)';
+            message.style.borderRadius = '5px';
+            message.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+            message.style.transition = 'opacity 0.3s ease';
+            document.body.appendChild(message);
+
+            setTimeout(() => {
+                message.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(message);
+                }, 200);
+            }, 2000);
+        }
+    </script>
+    <footer>
+        <p>&copy; 2024 Spartakus Shop. Sva prava zadržana. </p>
+    </footer>
+</body>
+</html>

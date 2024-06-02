@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Kontakt | SpartakusShop.rs </title>
+    <link rel="icon" href="logo (1).png" type="png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+
+   
+      <style>
+    * {
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+    }
+
+    body {
+        font-family:Arial,sans-serif;
+        background-color:#333;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+        color: white;
+        text-shadow: 1px  1px black;
+
+    }
+
+    
+    
+    header {
+       background-color:#333;
+       color:#fff;
+       padding:12px;
+       display: flex; /* Koristimo fleksibilni model raspoređivanja */
+       align-items: center; /* Centralizujemo elemente po vertikali */
+       justify-content: space-between; /* Razmaknemo elemente po horizontali */
+       position: fixed;
+       top:0;
+       width: 100%;
+    }
+
+    ::-webkit-scrollbar {
+    width: 5px; /* Širina klizača */
+}
+
+
+::-webkit-scrollbar-thumb {
+    background-color:#333;
+    color: #333;     
+}
+  
+    
+     .logo-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .logo-container img {
+        max-width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-right: 10px; /* Dodajemo razmak sa desne strane slike logotipa */
+    }
+   nav ul {
+        list-style-type:none;   
+    }
+
+    nav ul li{
+        display:inline;
+        margin: 0 20px;
+    }
+
+    nav ul li a {
+        position: relative;
+        color:#fff;
+        text-decoration: none;
+        padding: 6px 10px;
+        transition: .3s;
+    }
+    nav ul li a:hover {
+        color: red;
+    }
+
+    nav ul li a span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-bottom: 2px solid red;
+        border-radius:10px;
+        transform: scale(0) translateY(50px);
+        opacity: 0;
+        transition: .3s;
+
+    }
+
+    nav ul li a:hover span {
+         transform: scale(1) translateY(0);
+         opacity: 1;
+    }
+      
+        .container {
+            max-width: 1500px;
+            margin-bottom: 20px;
+            background: transparent;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border: 2px solid black;
+        }
+
+        .form-container {
+            flex: 1;
+            padding-right: 20px;
+
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border-radius: 5px;
+            border:  1px solid #ccc;
+        }
+
+        .form-group textarea {
+            height: 150px;
+        }
+
+        .form-group button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-group button:hover {
+            background-color: darkred;
+        }
+
+        .map-container {
+            width: 400px; /* širina mape */
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            margin-right: 50px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .social-icons {
+            text-align: center;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin-right: 25px;
+            color: white;
+            font-size: 35px;
+
+        }
+
+        .social-icons a:last-child {
+            margin-right: 0;
+        }
+         footer {
+        background-color:#333;
+        color:#fff;
+        text-align: center;
+        padding: 2px;
+        position:fixed;
+        bottom:0;
+        width:100%;
+        } 
+
+        main {
+        padding: 20px;
+    }
+    </style>
+
+</head>
+<body background="poz1.jpg">
+    <header>
+        <div class="logo-container">
+            <img src="logo.jpg" alt="Spartakus Shop Logo">
+            <h1 style="text-align: right;">Spartakus Shop</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="pocetna.html">Početna<span></span></a></li>
+                <li><a href="proizvodi.html">Proizvodi<span></span></a></li>
+                <li><a href="Korpa.html">Korpa <span></span></a></li>
+                <li><a href="kontakt.html">Kontakt<span></span></a></li>
+                <li><a href="onama.html">O nama<span></span></a></li>
+                
+            </ul>
+        </nav>
+    </header>
+<main>
+<div class="container">
+    <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2802.766631169978!2d20.393026376136834!3d45.37370407107259!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475adb44f974fb63%3A0xf740a46b63d73479!2zxJB1cmUgSmFrxaFpY8yBYSAxNCwgWnJlbmphbmluIDIzMDAwLCBTZXJiaWE!5e0!3m2!1sen!2sus!4v1712617944520!5m2!1sen!2sus"allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    
+    <div class="form-container">
+        <h1 style="font-weight: normal; font-size:24px;" >Kontaktirajte nas</h1>
+        <form id="contactForm" action="#" method="POST">
+            <div class="form-group">
+                <label for="name">Ime:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Poruka:</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit">Pošalji</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="social-icons">
+    <a href="link-ka-twitteru"><i class="fab fa-twitter"></i></a>
+    <a href="link-ka-instagramu"><i class="fab fa-instagram"></i></a>
+    <a href="link-ka-youtube"><i class="fab  fa-youtube"></i></a>
+    <a href="link-ka-facebooku"><i class="fab  fa-facebook"></i></a>
+    
+</div>
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Sprečava stvarno slanje formulara
+        alert('Poruka je poslata'); // Prikazuje poruku
+    });
+</script>
+</main>
+ <footer>
+        <p>&copy; 2024 Spartakus Shop. Sva prava zadržana. </p>
+    </footer>
+</body>
+</html>

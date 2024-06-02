@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> O nama | SpartakusShop.rs </title>
+    <link rel="icon" href="logo (1).png" type="png">
+    
+   <style>
+    * {
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+    }
+
+    body {
+        font-family:Arial,sans-serif;
+        background-color:#f0f0f0;
+        text-shadow: 1px 1px black;
+
+         ;
+
+    }
+
+    header {
+       background-color:#333;
+       color:#fff;
+       padding:12px;
+       display: flex; /* Koristimo fleksibilni model raspoređivanja */
+       align-items: center; /* Centralizujemo elemente po vertikali */
+       justify-content: space-between; /* Razmaknemo elemente po horizontali */
+    }
+::-webkit-scrollbar {
+    width: 5px; /* Širina klizača */
+}
+
+/* Prilagođavanje izgleda klizača u webkit pregledačima */
+::-webkit-scrollbar-thumb {
+    background-color:#333; /* Boja klizača */
+    
+}
+    .logo-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .logo-container img {
+        max-width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-right: 10px; /* Dodajemo razmak sa desne strane slike logotipa */
+    }
+   nav ul {
+        list-style-type:none;   
+    }
+
+    nav ul li{
+        display:inline;
+        margin: 0 20px;
+    }
+
+    nav ul li a {
+        position: relative;
+        color:#fff;
+        text-decoration: none;
+        padding: 6px 10px;
+        transition: .3s;
+    }
+    nav ul li a:hover {
+        color: red;
+    }
+
+    nav ul li a span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-bottom: 2px solid red;
+        border-radius:10px;
+        transform: scale(0) translateY(50px);
+        opacity: 0;
+        transition: .3s;
+
+    }
+
+    nav ul li a:hover span {
+         transform: scale(1) translateY(0);
+         opacity: 1;
+    }
+    main {
+        padding: 20px;
+    }
+
+   
+    footer {
+        background-color:#333;
+        color:#fff;
+        text-align: center;
+        padding: 2px;
+        position:fixed;
+        bottom:0;
+        width:100%;
+    }
+    </style>
+</head>
+<body background="poz1.jpg">
+    <header>
+        <div class="logo-container">
+            <img src="logo.jpg" alt="Spartakus Shop Logo">
+            <h1>Spartakus Shop</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="pocetna.html">Početna<span></span></a></li>
+                <li><a href="proizvodi.html">Proizvodi<span></span></a></li>
+                <li><a href="Korpa.html">Korpa <span></span></a></li>
+                <li><a href="kontakt.html">Kontakt<span></span></a></li>
+                <li><a href="onama.html">O nama<span></span></a></li>
+
+            </ul>
+        </nav>
+    </header>
+    <main> <h1 style="text-align: center; color: white;" > <b> Upoznajte Spartakus Shop! </b> </h1>
+        <br> <br>
+           <p style="font-size: 22px; color: white;"> Kada posetite  Spartakus Shop, preplavice vas talas odusevljenja.Ukoliko si zaljubljenik u borilacke sportove i stalo ti je do fizickog izgleda,na pravom si mestu!  Spartakus ti nudi puno opreme za teretanu i MMA,sve sto ti padne na pamet od tegova, sprava, boksačkih vreća, i mnogo toga drugog.
+<br> <br> <br> 
+Ako budes malo razlegao,primetices  jedan veliki plakat iza pulta: "Pridruži se Spartakus MMA timu!" Osoblje je vrlo ljubazno i spremno da ti objasni sve što te zanima.
+sada,si saznao  da Spartakus Shop nije samo obična prodavnica, već je i domaćin jednog ozbiljnog MMA tima.Imamo super trenere i ponudu treninga za sve, od totalnih početnika do naprednih boraca. Naš Spartakus MMA tim nije samo ekipa, nego zajednica ljudi koji obožavaju borilačke veštine."
+<br><br>
+Ponuda treninga bila je baš ono što ti treba. Nudimo ti  sve, od osnovnih tehnika udaranja i hvatanja, do specijalnih kurseva za različite stilove borbe. Ako hoćeš da kreneš od nule, ili da se takmičiš kao pravi profesionalac, Spartakus MMA tim je tvoja destinacija !
+</p> <br>
+<img src="logo.jpg"  style="border-radius: 50%; position:absolute; top: 520px; left: 700px;" width="140" height="140"  >
+
+     </main>
+    <footer>
+        <p>&copy; 2024 Spartakus Shop. Sva prava zadržana. </p>
+    </footer>
+</body>
+</html>

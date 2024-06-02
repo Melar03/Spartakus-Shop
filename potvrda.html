@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potvrda Kupovine | SpartakusShop.rs</title>
+    <link rel="icon" href="logo (1).png" type="png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #333;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"] {
+            flex: 1 0 48%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            background-color: #444;
+            color: white;
+        }
+
+        .form-group input[type="text"]:first-child,
+        .form-group input[type="text"]:last-child {
+            margin-right: 5px;
+        }
+
+        button {
+            background-color: #C70039;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            float: right;
+        }
+
+        button:hover {
+            background-color: black;
+        }
+           header {
+       background-color:#333;
+       color:#fff;
+       padding:12px;
+       display: flex; /* Koristimo fleksibilni model raspoređivanja */
+       align-items: center; /* Centralizujemo elemente po vertikali */
+       justify-content: space-between; /* Razmaknemo elemente po horizontali */
+       
+    }
+::-webkit-scrollbar {
+    width: 5px; /* Širina klizača */
+}
+
+/* Prilagođavanje izgleda klizača u webkit pregledačima */
+::-webkit-scrollbar-thumb {
+    background-color:#333; /* Boja klizača */
+    
+}
+    .logo-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .logo-container img {
+        max-width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-right: 10px; /* Dodajemo razmak sa desne strane slike logotipa */
+    }
+ nav ul {
+        list-style-type:none;   
+    }
+
+    nav ul li{
+        display:inline;
+        margin: 0 20px;
+    }
+
+    nav ul li a {
+        position: relative;
+        color:#fff;
+        text-decoration: none;
+        padding: 6px 10px;
+        transition: .3s;
+    }
+    nav ul li a:hover {
+        color: red;
+    }
+
+    nav ul li a span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-bottom: 2px solid red;
+        border-radius:10px;
+        transform: scale(0) translateY(50px);
+        opacity: 0;
+        transition: .3s;
+
+    }
+
+    nav ul li a:hover span {
+         transform: scale(1) translateY(0);
+         opacity: 1;
+    }
+    main {
+        padding: 20px;
+    }
+
+    footer {
+        background-color:#333;
+        color:#fff;
+        text-align: center;
+        padding: 2px;
+        position:fixed;
+        bottom:0;
+        width:100%;
+    }
+    </style>
+</head>
+<body background="poz1.jpg">
+    <header>
+        <div class="logo-container" >
+            <img src="logo.jpg" alt="Spartakus Shop Logo" >
+            <h1>Spartakus Shop</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="pocetna.html" >Početna<span></span></a></li>
+                <li><a href="proizvodi.html">Proizvodi<span></span></a></li>
+                <li><a href="Korpa.html">Korpa <span></span></a></li>
+                <li><a href="kontakt.html">Kontakt<span></span></a></li>
+                <li><a href="onama.html">O nama<span></span></a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Unesite svoje podatke</h1>
+        <form id="checkoutForm" onsubmit="return validateForm()" action="zahvalnica.html">
+            <div class="form-group">
+                <input type="text" id="firstName" name="firstName" placeholder="Ime" required>
+                <input type="text" id="lastName" name="lastName" placeholder="Prezime" required>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" name="email" placeholder="Email Adresa" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+            </div>
+            <div class="form-group">
+                <input type="tel" id="phone" name="phone" placeholder="Broj Telefona" pattern="[0-9]*" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="city" name="city" placeholder="Grad" required>
+                <input type="text" id="street" name="street" placeholder="Ulica i Broj" required>
+            </div>
+            <div id="totalPriceContainer">
+                <h3>Ukupna cena vaše korpe: <span id="totalPriceText">0 Rsd</span></h3>
+            </div>
+            <button type="submit">Potvrdi Kupovinu</button>
+        </form>
+     </div>
+
+    <script>
+        window.onload = function() {
+            let totalPrice = localStorage.getItem('totalPrice');
+            if (totalPrice) {
+                document.getElementById('totalPriceText').textContent = totalPrice + ' Rsd';
+            }
+        }
+
+       function validateForm() {
+    var firstName = document.getElementById("firstName").value;
+    var lastName = document.getElementById("lastName").value;
+    var email = document.getElementById("email").value;
+    var city = document.getElementById("city").value;
+    var street = document.getElementById("street").value;
+
+    if (firstName == "" || lastName == "" || email == "" || phone == "" || city == "" || street == "" || apartmentNumber == "") {
+        alert("Sva polja moraju biti popunjena.");
+        return false;
+    }
+
+    var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+        alert("Unesite validnu email adresu.");
+        return false;
+    }
+
+
+    // Prikazivanje ukupne cene na stranici korpe
+    let totalPrice = localStorage.getItem('totalPrice');
+    document.getElementById('totalPriceText').textContent = totalPrice + ' Rsd';
+    
+    return true;
+}
+
+    </script>
+     <footer>
+        <p>&copy; 2024 Spartakus Shop. Sva prava zadržana. </p>
+    </footer>
+</body>
+</html>

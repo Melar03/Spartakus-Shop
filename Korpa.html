@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Korpa | SpartakusShop.rs</title>
+    <link rel="icon" href="logo (1).png" type="png">
+    <style>
+        
+    * {
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+    }
+
+    body {
+        font-family:Arial,sans-serif;
+        background-color:#f0f0f0;
+        text-shadow: 1px 1px black;
+        color: white;
+    }
+
+    header {
+       background-color:#333;
+       color:#fff;
+       padding:12px;
+       display: flex; /* Koristimo fleksibilni model raspoređivanja */
+       align-items: center; /* Centralizujemo elemente po vertikali */
+       justify-content: space-between; /* Razmaknemo elemente po horizontali */
+    }
+
+    header img {
+        max-width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    header h1 {
+        margin: 0;
+        margin-right: auto;
+    }
+nav ul {
+        list-style-type:none;   
+    }
+
+    nav ul li{
+        display:inline;
+        margin: 0 20px;
+    }
+
+    nav ul li a {
+        position: relative;
+        color:#fff;
+        text-decoration: none;
+        padding: 6px 10px;
+        transition: .3s;
+    }
+    nav ul li a:hover {
+        color: red;
+    }
+
+    nav ul li a span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-bottom: 2px solid red;
+        border-radius:10px;
+        transform: scale(0) translateY(50px);
+        opacity: 0;
+        transition: .3s;
+
+    }
+
+    nav ul li a:hover span {
+         transform: scale(1) translateY(0);
+         opacity: 1;
+    }
+    main {
+        padding: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #333;
+        color: white;
+    }
+
+    th:first-child, td:first-child {
+        width: 20%;
+    }
+
+    img {
+        max-width: 100px;
+    }
+
+    button {
+        background-color: #C70039;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #333;
+    }
+
+    .total-price-container {
+        text-align: right;
+        margin-top: 20px;
+    }
+
+    .checkout-button-container {
+        text-align: right;
+        margin-top: 10px;
+    }
+
+    ::-webkit-scrollbar {
+    width: 5px; /* Širina klizača */
+}
+
+/* Prilagođavanje izgleda klizača u webkit pregledačima */
+::-webkit-scrollbar-thumb {
+    background-color:#333; /* Boja klizača */
+    
+}
+ footer {
+        background-color:#333;
+        color:#fff;
+        text-align: center;
+        padding: 2px;
+        position:fixed;
+        bottom:0;
+        width:100%;
+    }
+    </style>
+</head>
+<body background="poz1.jpg">
+    <header>
+        <div class="logo-container">
+            <img src="logo.jpg" alt="Spartakus Shop Logo" >
+        </div>
+        <h1>Spartakus Shop</h1>
+        <nav>
+            <ul>
+                <li><a href="pocetna.html">Početna<span></span></a></li>
+                <li><a href="proizvodi.html">Proizvodi<span></span></a></li>
+                <li><a href="Korpa.html">Korpa <span></span></a></li>
+                <li><a href="kontakt.html">Kontakt<span></span></a></li>
+                <li><a href="onama.html">O nama <span></span></a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1 style="text-align: center; padding:15px">Vaša korpa</h1>
+        <table>
+            <tr>
+                <th>Slika</th>
+                <th>Proizvod</th>
+                <th>Količina</th>
+                <th>Cena</th>
+                <th>Ukloni</th>
+            </tr>
+            <tbody id="cart"></tbody>
+        </table>
+        <div class="total-price-container">
+            <h3>Ukupno: <span id="totalPrice">0</span> Rsd</h3>
+        </div>
+        <div class="checkout-button-container">
+            <button onclick="checkout()">Nastavi sa plaćanjem</button>
+             <button onclick="clearCart()">Isprazni korpu</button>
+        </div>
+    
+
+    <script>
+        window.onload = function() {
+            // Učitavamo proizvode iz korpe i prikazujemo ih
+            let cart = localStorage.getItem('cart');
+            cart = cart ? JSON.parse(cart) : [];
+            updateCartView(cart);
+            // Proveravamo da li je korpa prazna
+            checkCartEmpty(cart);
+            
+
+        }
+
+        function clearCart() {
+            // Brisanje svih proizvoda iz korpe
+            localStorage.removeItem('cart');
+            updateCartView([]);
+            // Proveravamo da li je korpa prazna nakon brisanja
+            checkCartEmpty([]);
+        }
+
+        function checkCartEmpty(cart) {
+            // Proveravamo da li je korpa prazna
+            let checkoutButton = document.getElementById('checkoutButton');
+            if (cart.length === 0) {
+                checkoutButton.disabled = true; // Onemogućavamo dugme za plaćanje ako je korpa prazna
+            } else {
+                checkoutButton.disabled = false; // Omogućavamo dugme za plaćanje ako korpa nije prazna
+            }
+        }
+
+        function updateCartView(cart) {
+            let cartElement = document.getElementById('cart');
+            let totalPrice = 0;
+
+            cartElement.innerHTML = '';
+            cart.forEach(product => {
+                let productRow = document.createElement('tr');
+                productRow.innerHTML = `
+                    <td><img src="${product.imgSrc}" alt="${product.name}"></td>
+                    <td>${product.name}</td>
+                    <td>${product.quantity}</td>
+                    <td>${product.price * product.quantity} Rsd</td>
+                    <td><button onclick="removeOneFromCart('${product.name}')">X</button></td>
+                `;
+                cartElement.appendChild(productRow);
+                totalPrice += parseInt(product.price) * product.quantity; // Množimo cenu sa količinom
+            });
+            localStorage.setItem('totalPrice', totalPrice);
+
+            document.getElementById('totalPrice').textContent = totalPrice;
+        }
+
+        function checkout() {
+            // Proveravamo da li je korpa prazna prije preusmjeravanja na stranicu za plaćanje
+            let cart = localStorage.getItem('cart');
+            cart = cart ? JSON.parse(cart) : [];
+            if (cart.length > 0) {
+                window.location.href = 'potvrda.html';
+            } else {
+                alert('Vaša korpa je prazna. Molimo vas, dodajte proizvode u korpu.');
+            }
+        }
+
+        function addToCart(name, price, imgSrc) {
+            // Dodajemo proizvod u korpu
+            let cart = localStorage.getItem('cart');
+            cart = cart ? JSON.parse(cart) : [];
+
+            let existingProduct = cart.find(product => product.name === name);
+            if (existingProduct) {
+                existingProduct.quantity++;
+            } else {
+                cart.push({ name, price, imgSrc, quantity: 1 });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartView(cart);
+            // Proveravamo da li je korpa prazna nakon dodavanja proizvoda
+            checkCartEmpty(cart);
+        }
+
+        function removeOneFromCart(name) {
+            // Uklanjamo jedan proizvod iz korpe
+            let cart = localStorage.getItem('cart');
+            cart = cart ? JSON.parse(cart) : [];
+            let product = cart.find(p => p.name === name);
+            if (product && product.quantity > 1) {
+                product.quantity--;
+            } else {
+                cart = cart.filter(p => p.name !== name);
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartView(cart);
+            // Proveravamo da li je korpa prazna nakon uklanjanja proizvoda
+            checkCartEmpty(cart);
+        }
+    </script>
+    </main>
+    <footer>
+        <p>&copy; 2024 Spartakus Shop. Sva prava zadržana. </p>
+    </footer>
+</body>
+</html>
